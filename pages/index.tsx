@@ -1,23 +1,41 @@
-import type { NextPage } from "next";
+import type { InferGetServerSidePropsType, NextPage } from "next";
+import { client } from "../libs/client";
 import React from "react";
 import { Product, FooterBanner, HeroBanner } from "../components";
 
-const Home: NextPage = () => {
+const Home = ({
+  products,
+  bannerData,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
-      <HeroBanner />
-
+      <HeroBanner bannerData={bannerData[0]} />
       <div className="products-heading">
         <h2>Best selling products</h2>
         <p>Hoodies that speaks comfort.</p>
       </div>
       <div className="products-container">
-        {["Product 1", "Product 2"].map((product) => product)}
+        {products?.map((product: any) => product.name)}
       </div>
 
       <FooterBanner />
     </>
   );
 };
+
+export async function getServerSideProps() {
+  const query = `*[_type == "product" ]`;
+  const products = await client.fetch(query);
+
+  const bannerQuery = `*[_type == "banner" ]`;
+  const bannerData = await client.fetch(bannerQuery);
+
+  return {
+    props: {
+      products,
+      bannerData,
+    },
+  };
+}
 
 export default Home;

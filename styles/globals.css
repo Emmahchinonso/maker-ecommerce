@@ -170,10 +170,12 @@ span.text-red {
   transform: scale(1.1, 1.1);
 }
 .product-image {
+  position: relative;
   border-radius: 15px;
   background-color: #ebebeb;
   transform: scale(1, 1);
   transition: transform 0.5s ease;
+  overflow-x: hidden;
 }
 
 .product-name {
@@ -188,7 +190,6 @@ span.text-red {
 .hero-banner-container {
   padding: 100px 40px;
   background-color: #dcdcdc;
-  border-radius: 15px;
   position: relative;
   height: 500px;
   line-height: 0.9;

@@ -12,6 +12,7 @@ type BannerProps = {
 };
 
 const HeroBanner = ({ bannerData }: BannerProps) => {
+  console.log(bannerData);
   return (
     <div className="hero-banner-container">
       <div>
@@ -19,13 +20,15 @@ const HeroBanner = ({ bannerData }: BannerProps) => {
         <h3>{bannerData.midText}</h3>
         <h1>{bannerData.largeText1}</h1>
         {/*eslint-disable-next-line @next/next/no-img-element*/}
-        <Image
-          src={urlFor(bannerData.image).url()}
-          alt="hoodies"
-          className="hero-banner-image"
-          layout="fill"
-          objectFit="contain"
-        />
+        <div className="hero-banner-image">
+          <Image
+            src={urlFor(bannerData.image).url()}
+            alt="hoodies"
+            layout="fill"
+            objectFit="contain"
+          />
+        </div>
+
         <div>
           <Link href={`/product/${bannerData._id}`}>
             <button type="button">{bannerData.buttonText}</button>

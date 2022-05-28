@@ -2,6 +2,7 @@ import type { InferGetServerSidePropsType, NextPage } from "next";
 import { client } from "../libs/client";
 import React from "react";
 import { Product, FooterBanner, HeroBanner } from "../components";
+import { Banner, Product as IProduct } from "../sanity_maker-ecommerce/schema";
 
 const Home = ({
   products,
@@ -9,7 +10,7 @@ const Home = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
-      <HeroBanner bannerData={bannerData[0]} />
+      <HeroBanner bannerData={bannerData && bannerData[0]} />
       <div className="products-heading">
         <h2>Best selling products</h2>
         <p>Hoodies that speaks comfort.</p>
@@ -20,7 +21,7 @@ const Home = ({
         ))}
       </div>
 
-      <FooterBanner />
+      <FooterBanner footerData={bannerData && bannerData[0]} />
     </>
   );
 };

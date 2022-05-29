@@ -33,6 +33,8 @@ export async function getServerSideProps() {
   const bannerQuery = `*[_type == "banner" ]`;
   const bannerData = await client.fetch(bannerQuery);
 
+  console.log(products, bannerData);
+
   return {
     props: {
       products,

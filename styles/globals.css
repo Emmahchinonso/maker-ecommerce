@@ -172,6 +172,10 @@ span.text-red {
 }
 .product-image {
   position: relative;
+  display: grid;
+  place-items: center;
+  width: 250px;
+  height: 250px;
   border-radius: 15px;
   background-color: #ebebeb;
   transform: scale(1, 1);
@@ -479,9 +483,11 @@ span.text-red {
 }
 
 .product-detail-image {
+  position: relative;
+  display: grid;
+  place-items: center;
   border-radius: 15px;
   background-color: #ebebeb;
-
   width: 400px;
   height: 400px;
   cursor: pointer;
@@ -496,11 +502,17 @@ span.text-red {
   margin-top: 20px;
 }
 .small-image {
+  position: relative;
+  display: grid;
+  place-items: center;
   border-radius: 8px;
   background-color: #ebebeb;
   width: 70px;
   height: 70px;
   cursor: pointer;
+}
+.small-image:hover {
+  background-color: #f02d34;
 }
 
 .selected-image {

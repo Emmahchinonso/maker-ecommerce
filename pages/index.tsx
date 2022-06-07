@@ -2,7 +2,6 @@ import type { InferGetServerSidePropsType, NextPage } from "next";
 import { client } from "../libs/client";
 import React from "react";
 import { Product, FooterBanner, HeroBanner } from "../components";
-import { Banner, Product as IProduct } from "../sanity_maker-ecommerce/schema";
 
 const Home = ({
   products,
@@ -32,8 +31,6 @@ export async function getServerSideProps() {
 
   const bannerQuery = `*[_type == "banner" ]`;
   const bannerData = await client.fetch(bannerQuery);
-
-  console.log(products, bannerData);
 
   return {
     props: {

@@ -13,19 +13,21 @@ const Product = ({ product }: ProductProps) => {
 
   return (
     <>
-      <Link href={`/products/${slug?.current}`}>
-        <div className="product-card">
-          <div className="product-image">
-            <Image
-              src={urlFor(image && image[0]).url()}
-              alt="hoodies"
-              width="200"
-              height="200"
-            />
+      <Link href={`/products/${slug?.current}`} passHref>
+        <a>
+          <div className="product-card">
+            <div className="product-image">
+              <Image
+                src={urlFor(image && image[0]).url()}
+                alt="hoodies"
+                width="200"
+                height="200"
+              />
+            </div>
+            <p className="product-name">{name}</p>
+            <p className="product-price">${price}</p>
           </div>
-          <p className="product-name">{name}</p>
-          <p className="product-price">${price}</p>
-        </div>
+        </a>
       </Link>
     </>
   );

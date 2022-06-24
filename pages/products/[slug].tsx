@@ -136,6 +136,7 @@ export const getStaticProps: GetStaticProps<Props, Params> = async ({
     props: {
       product,
       similarProducts,
+      key: params!.slug,
     },
   };
 };

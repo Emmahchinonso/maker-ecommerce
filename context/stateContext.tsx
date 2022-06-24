@@ -16,6 +16,8 @@ interface ContextInterface {
   showPrice: boolean;
   totalQuantity: number;
   onAdd: (product: CartProduct, quantity: number) => void;
+  setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
+  totalPrice: number;
 }
 
 const Context = React.createContext<ContextInterface | null>(null);
@@ -24,14 +26,12 @@ const StateContext = ({ children }: Props) => {
   const [showCart, setShowCart] = React.useState(false);
   const [cartItems, setCartItems] = React.useState<CartProduct[] | []>([]);
   const [showPrice, setShowPrice] = React.useState(false);
-  const [totalQuantity, setTotalQuantity] = React.useState(1);
-  console.log();
+  const [totalQuantity, setTotalQuantity] = React.useState(0);
+  const [totalPrice, setTotalPrice] = React.useState(0);
 
   function onAdd(product: CartProduct, quantity: number) {
     const isProductInCart = cartItems.find((item) => item._id === product._id);
-    setTotalQuantity(
-      (prevTotal) => prevTotal + (product.price || 0) * quantity
-    );
+    setTotalPrice((prevTotal) => prevTotal + (product.price || 0) * quantity);
     setTotalQuantity((prevTotal) => prevTotal + quantity);
     let updatedCartItems = [];
 
@@ -54,10 +54,12 @@ const StateContext = ({ children }: Props) => {
     <Context.Provider
       value={{
         showCart,
+        setShowCart,
         cartItems,
         showPrice,
         totalQuantity,
         onAdd,
+        totalPrice,
       }}
     >
       {children}

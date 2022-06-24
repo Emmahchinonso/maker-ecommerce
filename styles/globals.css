@@ -410,6 +410,7 @@ span.text-red {
   padding: 20px;
 }
 .product .cart-product-image {
+  position: relative;
   width: 180px;
   height: 150px;
   border-radius: 15px;
@@ -426,6 +427,7 @@ span.text-red {
 }
 .flex h5 {
   font-size: 24px;
+  margin: 0;
 }
 .flex h4 {
   font-size: 20px;

@@ -14,10 +14,16 @@ import Image from "next/image";
 
 const Cart = () => {
   const cartRef = React.useRef<HTMLDivElement | null>(null);
-  console.log("ref", cartRef.current);
-  // prettier-ignore
-  const { totalPrice, totalQuantity, cartItems, setShowCart } = useStateContext();
-  console.log(cartItems);
+
+  const {
+    totalPrice,
+    totalQuantity,
+    cartItems,
+    setShowCart,
+    toggleCartItemQuantity,
+    onRemove,
+  } = useStateContext();
+
   return (
     <div className="cart-wrapper" ref={cartRef}>
       <div className="cart-container">
@@ -60,16 +66,29 @@ const Cart = () => {
                   <div className="flex bottom">
                     <div>
                       <p className="quantity-desc">
-                        <span className="minus" onClick={() => {}}>
+                        <span
+                          className="minus"
+                          onClick={() =>
+                            toggleCartItemQuantity(item._id, "desc")
+                          }
+                        >
                           <AiOutlineMinus />
                         </span>
-                        <span className="num">0</span>
-                        <span className="plus" onClick={() => {}}>
+                        <span className="num">{item.quantity}</span>
+                        <span
+                          className="plus"
+                          onClick={() =>
+                            toggleCartItemQuantity(item._id, "inc")
+                          }
+                        >
                           <AiOutlinePlus />
                         </span>
                       </p>
                     </div>
-                    <button className="remove-item" onClick={() => {}}>
+                    <button
+                      className="remove-item"
+                      onClick={() => onRemove(item)}
+                    >
                       <TiDeleteOutline />
                     </button>
                   </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import toast, { Toast } from "react-hot-toast";
 import { Product as IProduct } from "../sanity_maker-ecommerce/schema";
-
+import { usePaystackPayment } from "react-paystack";
 interface Props {
   children: React.ReactNode;
 }
@@ -30,8 +30,6 @@ const StateContext = ({ children }: Props) => {
   const [showPrice, setShowPrice] = React.useState(false);
   const [totalQuantity, setTotalQuantity] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
-
-  console.log("state context called");
 
   React.useEffect(() => {
     console.log("state effect call");

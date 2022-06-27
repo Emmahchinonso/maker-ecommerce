@@ -11,9 +11,28 @@ import toast from "react-hot-toast";
 import { useStateContext } from "../context/stateContext";
 import { urlFor } from "../libs/client";
 import Image from "next/image";
+import { PAYSTACK_PUBLIC_KEY } from "../libs/constants";
+import { usePaystackPayment } from "react-paystack";
+import { PaystackProps } from "react-paystack/dist/types";
 
 const Cart = () => {
   const cartRef = React.useRef<HTMLDivElement | null>(null);
+
+  const config = {
+    reference: new Date().getTime().toString(),
+    email: "emmanuelchinons9@gmail.com",
+    publicKey: PAYSTACK_PUBLIC_KEY,
+    currency: "NGN",
+    amount: 4000,
+  } as PaystackProps;
+
+  const onSuccess = (reference: string) => {
+    toast.success("payment successful");
+  };
+
+  const onClose = () => {
+    toast.success("modal closed");
+  };
 
   const {
     totalPrice,
@@ -23,6 +42,8 @@ const Cart = () => {
     toggleCartItemQuantity,
     onRemove,
   } = useStateContext();
+
+  const initializePayment = usePaystackPayment(config);
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
@@ -103,7 +124,10 @@ const Cart = () => {
               <h3>${totalPrice}</h3>
             </div>
             <div className="btn-container">
-              <button className="btn" onClick={() => {}}>
+              <button
+                className="btn"
+                onClick={() => initializePayment(onSuccess, onClose)}
+              >
                 Pay with Paystack
               </button>
             </div>

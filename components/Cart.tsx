@@ -23,7 +23,7 @@ const Cart = () => {
     email: "emmanuelchinons9@gmail.com",
     publicKey: PAYSTACK_PUBLIC_KEY,
     currency: "NGN",
-    amount: 4000,
+    amount: 4000000,
   } as PaystackProps;
 
   const onSuccess = (reference: string) => {

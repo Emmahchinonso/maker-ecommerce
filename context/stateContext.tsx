@@ -13,13 +13,13 @@ interface CartProduct extends IProduct {
 interface ContextInterface {
   showCart: boolean;
   cartItems: CartProduct[];
-  showPrice: boolean;
   totalQuantity: number;
   onAdd: (product: CartProduct, quantity: number) => void;
   setShowCart: React.Dispatch<React.SetStateAction<boolean>>;
   totalPrice: number;
   toggleCartItemQuantity: (id: string, value: string) => void;
   onRemove: (product: CartProduct) => void;
+  resetCart: () => void;
 }
 
 const Context = React.createContext<ContextInterface | null>(null);
@@ -27,7 +27,6 @@ const Context = React.createContext<ContextInterface | null>(null);
 const StateContext = ({ children }: Props) => {
   const [showCart, setShowCart] = React.useState(false);
   const [cartItems, setCartItems] = React.useState<CartProduct[] | []>([]);
-  const [showPrice, setShowPrice] = React.useState(false);
   const [totalQuantity, setTotalQuantity] = React.useState(0);
   const [totalPrice, setTotalPrice] = React.useState(0);
 
@@ -44,6 +43,12 @@ const StateContext = ({ children }: Props) => {
       (prevPrice) => prevPrice - product.price! * product.quantity!
     );
     setTotalQuantity((total) => total - product.quantity!);
+  }
+
+  function resetCart() {
+    setCartItems([]);
+    setTotalPrice(0);
+    setTotalQuantity(0);
   }
 
   function toggleCartItemQuantity(id: string, value: string) {
@@ -101,12 +106,12 @@ const StateContext = ({ children }: Props) => {
         showCart,
         setShowCart,
         cartItems,
-        showPrice,
         totalQuantity,
         onAdd,
         totalPrice,
         toggleCartItemQuantity,
         onRemove,
+        resetCart,
       }}
     >
       {children}

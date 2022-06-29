@@ -28,8 +28,13 @@ const ProductDetails = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { image, name, price, details } = product;
   const [index, setIndex] = React.useState(0);
-  const { onAdd } = useStateContext();
+  const { onAdd, setShowCart } = useStateContext();
   const [qty, setQty] = React.useState(1);
+
+  function buyNow() {
+    onAdd(product, qty);
+    setShowCart(true);
+  }
 
   function incQty() {
     setQty((prevQty) => prevQty + 1);
@@ -48,7 +53,7 @@ const ProductDetails = ({
         <div>
           <div className="product-detail-image">
             <Image
-              src={urlFor(image && image[index]).url()}
+              src={urlFor(image! && image[index]).url()}
               alt={`product ${name} imag`}
               width="300"
               height="300"
@@ -103,7 +108,7 @@ const ProductDetails = ({
             >
               Add to Cart
             </button>
-            <button type="button" className="buy-now" onClick={() => {}}>
+            <button type="button" className="buy-now" onClick={buyNow}>
               Buy Now
             </button>
           </div>

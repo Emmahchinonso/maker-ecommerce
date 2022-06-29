@@ -14,25 +14,18 @@ import Image from "next/image";
 import { PAYSTACK_PUBLIC_KEY } from "../libs/constants";
 import { usePaystackPayment } from "react-paystack";
 import { PaystackProps } from "react-paystack/dist/types";
+import { useRouter } from "next/router";
 
 const Cart = () => {
   const cartRef = React.useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
 
   const config = {
-    reference: new Date().getTime().toString(),
     email: "emmanuelchinons9@gmail.com",
     publicKey: PAYSTACK_PUBLIC_KEY,
     currency: "NGN",
     amount: 4000000,
   } as PaystackProps;
-
-  const onSuccess = (reference: string) => {
-    toast.success("payment successful");
-  };
-
-  const onClose = () => {
-    toast.success("modal closed");
-  };
 
   const {
     totalPrice,
@@ -43,6 +36,13 @@ const Cart = () => {
     onRemove,
   } = useStateContext();
 
+  const onSuccess = (reference: string) => {
+    toast.success("payment successful");
+    setShowCart(false);
+    router.push("/success");
+  };
+
+  const onClose = () => {};
   const initializePayment = usePaystackPayment(config);
 
   return (

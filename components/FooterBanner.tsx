@@ -39,7 +39,7 @@ const FooterBanner = ({ footerData }: FooterProps) => {
           </Link>
           <div className="footer-banner-image">
             <Image
-              src={urlFor(image).url()}
+              src={urlFor(image!).url()}
               alt="hoodies"
               width={500}
               height={500}

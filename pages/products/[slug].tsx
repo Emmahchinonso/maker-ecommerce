@@ -2,7 +2,6 @@ import Image from "next/image";
 import React from "react";
 import { client, urlFor } from "../../libs/client";
 import { ParsedUrlQuery } from "querystring";
-import { Product as IProduct } from "../../sanity_maker-ecommerce/schema";
 import { GetStaticProps, InferGetStaticPropsType } from "next";
 import {
   AiOutlineMinus,
@@ -12,6 +11,7 @@ import {
 } from "react-icons/ai";
 import { Product } from "../../components";
 import { useStateContext } from "../../context/stateContext";
+import { IProduct } from "../../types";
 
 type Props = {
   product: IProduct;

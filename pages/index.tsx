@@ -1,7 +1,17 @@
-import type { InferGetServerSidePropsType, NextPage } from "next";
+import type {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+  NextPage,
+} from "next";
 import { client } from "../libs/client";
 import React from "react";
 import { Product, FooterBanner, HeroBanner } from "../components";
+import { Banner, IProduct } from "../types";
+
+type Props = {
+  products: IProduct[];
+  bannerData: Banner[];
+};
 
 const Home = ({
   products,
@@ -15,7 +25,7 @@ const Home = ({
         <p>Hoodies that speaks comfort.</p>
       </div>
       <div className="products-container">
-        {products?.map((product: any) => (
+        {products?.map((product) => (
           <Product key={product._id} product={product} />
         ))}
       </div>
@@ -25,7 +35,7 @@ const Home = ({
   );
 };
 
-export async function getServerSideProps() {
+export const getServerSideProps: GetServerSideProps<Props> = async () => {
   const query = `*[_type == "product" ]`;
   const products = await client.fetch(query);
 
@@ -38,6 +48,6 @@ export async function getServerSideProps() {
       bannerData,
     },
   };
-}
+};
 
 export default Home;

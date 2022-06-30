@@ -1,3 +1,46 @@
+// type SanityImage = {
+//   _key?: string;
+//   _type: string;
+//   asset: {
+//     _ref: string;
+//     _type: string;
+//   };
+// };
+
+// export interface IProduct {
+//   _createdAt: string;
+//   _id: string;
+//   _rev: string;
+//   _type: string;
+//   _updatedAt: string;
+//   details: string;
+//   image: SanityImage[];
+//   name: string;
+//   price: number;
+//   slug: {
+//     _type: string;
+//     current: string;
+//   };
+// }
+
+// export interface Banner {
+//   _createdAt: string;
+//   _id: string;
+//   _rev: string;
+//   _type: "banner";
+//   _updatedAt: string;
+//   buttonText: string;
+//   desc: string;
+//   discount: string;
+//   image: SanityImage;
+//   largeText1: string;
+//   largeText2: string;
+//   midText: string;
+//   product: string;
+//   saleTime: string;
+//   smallText: string;
+// }
+
 import type {
   SanityReference,
   SanityKeyedReference,
@@ -41,7 +84,7 @@ export type {
  *
  *
  */
-export interface Product extends SanityDocument {
+export interface IProduct extends SanityDocument {
   _type: "product";
 
   /**

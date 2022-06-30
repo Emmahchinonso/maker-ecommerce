@@ -1,7 +1,6 @@
 import React from "react";
 import toast, { Toast } from "react-hot-toast";
-import { Product as IProduct } from "../sanity_maker-ecommerce/schema";
-import { usePaystackPayment } from "react-paystack";
+import { IProduct } from "../types";
 interface Props {
   children: React.ReactNode;
 }

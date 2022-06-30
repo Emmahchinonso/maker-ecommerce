@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { urlFor } from "../libs/client";
-import { Banner } from "../sanity_maker-ecommerce/schema";
+import { Banner } from "../types";
 
 type FooterProps = {
   footerData: Banner;

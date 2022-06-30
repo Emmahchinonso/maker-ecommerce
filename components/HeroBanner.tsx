@@ -2,13 +2,11 @@ import { useNextSanityImage } from "next-sanity-image";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { client, urlFor } from "../libs/client";
-import { Banner } from "../sanity_maker-ecommerce/schema";
-
-interface BannerExt extends Banner {}
+import { urlFor } from "../libs/client";
+import { Banner } from "../types";
 
 type BannerProps = {
-  bannerData: BannerExt;
+  bannerData: Banner;
 };
 
 const HeroBanner = ({ bannerData }: BannerProps) => {

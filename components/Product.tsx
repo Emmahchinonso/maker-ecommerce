@@ -1,11 +1,11 @@
 import React from "react";
-import { Product } from "../sanity_maker-ecommerce/schema";
 import Link from "next/link";
 import { urlFor } from "../libs/client";
 import Image from "next/image";
+import { IProduct } from "../types";
 
 type ProductProps = {
-  product: Product;
+  product: IProduct;
 };
 
 const Product = ({ product }: ProductProps) => {
